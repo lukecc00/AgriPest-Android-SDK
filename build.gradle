@@ -1,5 +1,5 @@
 group 'com.agri.pest'
-version '1.0.6'
+version '1.0.7'
 
 wrapper {
     gradleVersion = '7.5'
@@ -9,6 +9,7 @@ wrapper {
 buildscript {
     ext.kotlin_version = '1.8.10'
     ext.retrofitVersion = '2.9.0'
+    ext.rxJava3Version = '3.0.12'
     ext.spotless_version = "6.13.0"
 
     repositories {
@@ -57,6 +58,8 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     implementation "com.google.code.gson:gson:2.9.0"
     implementation "com.squareup.okhttp3:logging-interceptor:4.10.0"
+    implementation "io.reactivex.rxjava3:rxjava:$rxJava3Version"
+    implementation "com.squareup.retrofit2:adapter-rxjava3:2.9.0"
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
     implementation "com.squareup.retrofit2:converter-scalars:$retrofitVersion"

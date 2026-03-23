@@ -10,6 +10,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Converter
 import retrofit2.CallAdapter
 import retrofit2.converter.scalars.ScalarsConverterFactory
+import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import retrofit2.converter.gson.GsonConverterFactory
@@ -21,6 +22,7 @@ class ApiClient(
     private val serializerBuilder: GsonBuilder = Serializer.gsonBuilder,
     private val callFactory : Call.Factory? = null,
     private val callAdapterFactories: List<CallAdapter.Factory> = listOf(
+        RxJava3CallAdapterFactory.create(),
     ),
     private val converterFactories: List<Converter.Factory> = listOf(
         ScalarsConverterFactory.create(),

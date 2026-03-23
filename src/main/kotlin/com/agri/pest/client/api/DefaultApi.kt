@@ -2,8 +2,9 @@ package com.agri.pest.client.api
 
 import org.openapitools.client.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
 import okhttp3.RequestBody
+import io.reactivex.rxjava3.core.Single
+import io.reactivex.rxjava3.core.Completable
 import com.google.gson.annotations.SerializedName
 
 import com.agri.pest.client.model.ChangePhoneRequest
@@ -29,7 +30,7 @@ interface DefaultApi {
      * @return [Call]<[ResultVoid]>
      */
     @PUT("api/users/me/phone")
-    fun changePhone(@Body changePhoneRequest: ChangePhoneRequest): Call<ResultVoid>
+    fun changePhone(@Body changePhoneRequest: ChangePhoneRequest): Single<ResultVoid>
 
     /**
      * 关注用户
@@ -43,7 +44,7 @@ interface DefaultApi {
      * @return [Call]<[ResultVoid]>
      */
     @POST("api/users/{id}/follow")
-    fun followUser(@Path("id") id: kotlin.Long): Call<ResultVoid>
+    fun followUser(@Path("id") id: kotlin.Long): Single<ResultVoid>
 
     /**
      * 获取当前用户资料
@@ -56,7 +57,7 @@ interface DefaultApi {
      * @return [Call]<[ResultUserProfileDto]>
      */
     @GET("api/users/me")
-    fun getCurrentUserProfile(): Call<ResultUserProfileDto>
+    fun getCurrentUserProfile(): Single<ResultUserProfileDto>
 
     /**
      * 取消关注用户
@@ -70,7 +71,7 @@ interface DefaultApi {
      * @return [Call]<[ResultVoid]>
      */
     @DELETE("api/users/{id}/follow")
-    fun unfollowUser(@Path("id") id: kotlin.Long): Call<ResultVoid>
+    fun unfollowUser(@Path("id") id: kotlin.Long): Single<ResultVoid>
 
     /**
      * 更新当前用户资料
@@ -84,7 +85,7 @@ interface DefaultApi {
      * @return [Call]<[ResultUserProfileDto]>
      */
     @PUT("api/users/me")
-    fun updateProfile(@Body profileUpdateRequest: ProfileUpdateRequest): Call<ResultUserProfileDto>
+    fun updateProfile(@Body profileUpdateRequest: ProfileUpdateRequest): Single<ResultUserProfileDto>
 
     /**
      * 通用单文件上传
@@ -100,7 +101,7 @@ interface DefaultApi {
      */
     @Multipart
     @POST("api/files/upload")
-    fun uploadFile(@Part file: MultipartBody.Part, @Query("prefix") prefix: kotlin.String? = "uploads/"): Call<ResultString>
+    fun uploadFile(@Part file: MultipartBody.Part, @Query("prefix") prefix: kotlin.String? = "uploads/"): Single<ResultString>
 
     /**
      * 通用多文件批量上传
@@ -116,6 +117,6 @@ interface DefaultApi {
      */
     @Multipart
     @POST("api/files/upload/batch")
-    fun uploadFiles(@Part files: MultipartBody.Part, @Query("prefix") prefix: kotlin.String? = "uploads/"): Call<ResultListString>
+    fun uploadFiles(@Part files: MultipartBody.Part, @Query("prefix") prefix: kotlin.String? = "uploads/"): Single<ResultListString>
 
 }

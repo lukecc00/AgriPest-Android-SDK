@@ -2,8 +2,9 @@ package com.agri.pest.client.api
 
 import org.openapitools.client.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
 import okhttp3.RequestBody
+import io.reactivex.rxjava3.core.Single
+import io.reactivex.rxjava3.core.Completable
 import com.google.gson.annotations.SerializedName
 
 import com.agri.pest.client.model.ResultObject
@@ -21,6 +22,6 @@ interface SystemHealthApi {
      * @return [Call]<[ResultString]>
      */
     @GET("api/health")
-    fun health(): Call<ResultString>
+    fun health(): Single<ResultString>
 
 }

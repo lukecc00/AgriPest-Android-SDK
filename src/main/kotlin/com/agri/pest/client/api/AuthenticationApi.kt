@@ -2,8 +2,9 @@ package com.agri.pest.client.api
 
 import org.openapitools.client.infrastructure.CollectionFormats.*
 import retrofit2.http.*
-import retrofit2.Call
 import okhttp3.RequestBody
+import io.reactivex.rxjava3.core.Single
+import io.reactivex.rxjava3.core.Completable
 import com.google.gson.annotations.SerializedName
 
 import com.agri.pest.client.model.LoginRequest
@@ -28,7 +29,7 @@ interface AuthenticationApi {
      * @return [Call]<[ResultAuthResponse]>
      */
     @POST("api/auth/login")
-    fun login(@Body loginRequest: LoginRequest): Call<ResultAuthResponse>
+    fun login(@Body loginRequest: LoginRequest): Single<ResultAuthResponse>
 
     /**
      * 手机号验证码登录
@@ -42,7 +43,7 @@ interface AuthenticationApi {
      * @return [Call]<[ResultAuthResponse]>
      */
     @POST("api/auth/login-by-sms")
-    fun loginBySms(@Body smsLoginRequest: SmsLoginRequest): Call<ResultAuthResponse>
+    fun loginBySms(@Body smsLoginRequest: SmsLoginRequest): Single<ResultAuthResponse>
 
     /**
      * 刷新 Token
@@ -56,7 +57,7 @@ interface AuthenticationApi {
      * @return [Call]<[ResultAuthResponse]>
      */
     @POST("api/auth/refresh")
-    fun refresh(@Body refreshTokenRequest: RefreshTokenRequest): Call<ResultAuthResponse>
+    fun refresh(@Body refreshTokenRequest: RefreshTokenRequest): Single<ResultAuthResponse>
 
     /**
      * 用户注册
@@ -70,7 +71,7 @@ interface AuthenticationApi {
      * @return [Call]<[ResultAuthResponse]>
      */
     @POST("api/auth/register")
-    fun register(@Body registerRequest: RegisterRequest): Call<ResultAuthResponse>
+    fun register(@Body registerRequest: RegisterRequest): Single<ResultAuthResponse>
 
     /**
      * 发送短信验证码
@@ -84,6 +85,6 @@ interface AuthenticationApi {
      * @return [Call]<[ResultVoid]>
      */
     @POST("api/auth/send-code")
-    fun sendSmsCode(@Body sendSmsRequest: SendSmsRequest): Call<ResultVoid>
+    fun sendSmsCode(@Body sendSmsRequest: SendSmsRequest): Single<ResultVoid>
 
 }
